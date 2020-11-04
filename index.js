@@ -214,3 +214,14 @@ const getTweetsLessOrEqualsThan = (feed, noComments) => {
 const getTweetsGreaterThanInteraction = (feed, interaction, quantity) => {
 
 }
+
+
+module.exports = {
+    countTweets,
+    getProfiles,
+    updateUsername,
+    updateInteraction,
+    getTweetsGreaterThan,
+    getTweetsLessOrEqualsThan,
+    getTweetsGreaterThanInteraction
+}
