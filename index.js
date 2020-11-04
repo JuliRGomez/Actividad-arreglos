@@ -8,8 +8,8 @@ const {feed} = require('./source');
 Input: feed -> [{propiedades...}, {propiedades...}]
 Output: 2
 */
-const countTweets = (feed) => {};
-
+const countTweets = (feed) => {return feed.length};
+console.log(countTweets(feed));
 /*
 2. Obtener un arreglo con todos los perfiles de usuarios que están en el arreglo de tweets
 Input: feed -> [{profile: "AJ + Español"},{ profile: "Elon Musk" }]
@@ -63,9 +63,46 @@ Output: arregloTweets -> [
 */
 
 const updateInteraction = (feed) => {
-
+    // const newFeed=Array.from(feed)
+    // const coppy= newFeed.filter(element=>{
+    // if(element.interaction.comments>=1000){
+    //     element.interaction.comments=element.interaction.comments/1000 + ' mil'
+    // }
+    // if(element.interaction.retweets>=1000){
+    //     element.interaction.retweets=element.interaction.retweets/1000 + ' mil'
+    // }
+    // if(element.interaction.likes>=1000){
+    //     element.interaction.likes=element.interaction.likes/1000 + ' mil'
+    // }
+    
+    //     return element;
+    // //    element.interaction.comments>=1000? element.interaction.comments=element.interaction.comments/1000 +'mil':element.interaction.comments=element.interaction.comments
+    // })
+    
+//     return (newFeed);
+//const newFeed = JSON.parse(JSON.stringify(feed))
+const newFeed=[...feed]
+// const =Array.from(feed)
+const coppy = newFeed.map(element=>{
+    
+    if(element.interaction.comments>=1000){
+       element.interaction.comments=element.interaction.comments/1000 + ' mil'
+    }
+    if(element.interaction.retweets>=1000){
+        element.interaction.retweets=element.interaction.retweets/1000 + ' mil'
+    }
+    if(element.interaction.likes>=1000){
+                element.interaction.likes=element.interaction.likes/1000 + ' mil'
+    }
+    return element;
+})
+return (coppy);
 }
-
+// console.log(feed);
+// console.log('arreglo modificado');
+console.log(updateInteraction(feed));
+console.log('arreglo original')
+console.log(feed);
 /*
 5. Función para obtener todos los tweets que tengan más de "n" comentarios y mostrarlos de la misma forma que el punto no 4
 Input: 
@@ -212,5 +249,8 @@ const getTweetsLessOrEqualsThan = (feed, noComments) => {
 
 */
 const getTweetsGreaterThanInteraction = (feed, interaction, quantity) => {
-
+    // const newFeed = JSON.parse(JSON.stringify(feed))
+    const newFeed= feed.filter(element=>element.interaction[interaction]>=quantity)    
+    return (newFeed);
 }
+console.log(getTweetsGreaterThanInteraction(feed,'comments',6700))
